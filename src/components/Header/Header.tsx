@@ -1,11 +1,11 @@
 import React from 'react';
-import d from './Header.module.css';
+import s from './Header.module.css';
 
 const Header = () => {
     return (
-        <header className={d.header}>
+        <header className={s.header}>
             <img
-                src={'https://cdn3.iconfinder.com/data/icons/3d-applications/256/app_icons_social_media_search___logo_google_engine_software.png'}/>
+                src={'https://cdn.shopify.com/s/files/1/2412/7455/products/de-ma20-r-m_1024x1024.png?v=1623689901'} alt={'Lighthouse image'}/>
         </header>
     );
 };
