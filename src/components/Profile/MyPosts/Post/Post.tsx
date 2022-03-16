@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './Post.module.css';
-import {DialogsType, MessageType} from '../../../../index';
 
 type PropsType = {
     message: string
