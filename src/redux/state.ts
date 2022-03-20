@@ -6,6 +6,7 @@ export type PostType = {
 export type DialogsType = {
     id: number
     name: string
+    avatar: string
 }
 export type MessageType = {
     id: number
@@ -36,12 +37,12 @@ let state: RootStateType = {
     },
     dialogsPage: {
         dialogs: [
-            {id: 1, name: 'Denis'},
-            {id: 2, name: 'Eugene'},
-            {id: 3, name: 'Olya'},
-            {id: 4, name: 'Zhesha'},
-            {id: 5, name: 'Kostya'},
-            {id: 6, name: 'Ira'},
+            {id: 1, name: 'Denis', avatar: 'https://klike.net/uploads/posts/2019-03/1551511856_25.jpg'},
+            {id: 2, name: 'Eugene', avatar: 'https://klike.net/uploads/posts/2019-03/1551515594_15.jpg'},
+            {id: 3, name: 'Olya', avatar: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'},
+            {id: 4, name: 'Zhesha', avatar: 'https://klike.net/uploads/posts/2019-03/1551511823_2.jpg'},
+            {id: 5, name: 'Kostya', avatar: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'},
+            {id: 6, name: 'Ira', avatar: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'},
         ],
         messages: [
             {id: 1, message: 'Hi'},

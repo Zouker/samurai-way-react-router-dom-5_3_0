@@ -9,7 +9,7 @@ type PropsType = {
 
 const MyPosts = (props: PropsType) => {
 
-    let postsElements = state.profilePage.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
+    let postsElements =  state.profilePage.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     return (
         <div className={s.postsBlock}>
