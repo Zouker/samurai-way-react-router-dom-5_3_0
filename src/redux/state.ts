@@ -1,4 +1,6 @@
-import {renderTree} from '../render';
+let renderTree = (state: RootStateType) => {
+    console.log('State was changed');
+}
 
 export type PostsType = {
     id: number
@@ -73,6 +75,10 @@ export const addPost = () => {
 export const updateNewPostText = (newText: string) => {
     state.profilePage.messageForNewPost = newText;
     renderTree(state);
+}
+
+export const subscribe = (observer: (state: RootStateType)=> void) => {
+    renderTree = observer;
 }
 
 export default state;
