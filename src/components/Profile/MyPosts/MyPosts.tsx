@@ -6,8 +6,6 @@ import {ActionsTypes, addPostAC, PostsType, updateNewPostTextAC} from '../../../
 type PropsType = {
     posts: Array<PostsType>
     messageForNewPost: string
-    // addPost: (postMessage: string) => void
-    //   updateNewPostText: (newText: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
@@ -19,15 +17,11 @@ const MyPosts = (props: PropsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        // if (newPostElement.current) {
-        //     props.addPost(newPostElement.current.value);
-        //     newPostElement.current.value = '';
         props.dispatch(addPostAC(props.messageForNewPost))
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        // props.updateNewPostText(e.currentTarget.value)
         props.dispatch(updateNewPostTextAC(text))
     }
 

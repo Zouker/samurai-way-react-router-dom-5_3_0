@@ -12,8 +12,6 @@ import {ActionsTypes, StoreType} from './redux/state';
 
 export type PropsType = {
     store: StoreType
-    // addPost: (postMessage: string) => void
-    // updateNewPostText: (newText: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
@@ -31,8 +29,7 @@ const App: React.FC<PropsType> = (props) => {
                                                   posts={state.profilePage.posts}
                                                   dispatch={props.dispatch}
                                                 />}/>
-                    <Route path="/dialogs" render={() => <Dialogs dialogs={state.dialogsPage.dialogs}
-                                                                  messages={state.dialogsPage.messages}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs store={props.store}/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>

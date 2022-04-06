@@ -17,9 +17,10 @@ type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostsType>
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
+    newMessageBody: string
 }
 type SidebarType = {}
 
@@ -32,14 +33,18 @@ export type RootStateType = {
 export type StoreType = {
     _state: RootStateType
     _callSubscriber: () => void
-    addPost: (postText: string) => void
-    updateNewPostText: (newText: string) => void
+    // addPost: (postText: string) => void
+    // updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof updateNewMessageBodyAC>
+    | ReturnType<typeof sendMessageAC>
 
 export const addPostAC = (postText: string) => {
     return {
@@ -54,6 +59,20 @@ export const updateNewPostTextAC = (newText: string) => {
         newText: newText
     } as const
 }
+
+export const updateNewMessageBodyAC = (body: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-BODY',
+        body: body
+    } as const
+}
+
+export const sendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE'
+    } as const
+}
+
 
 const store: StoreType = {
     _state: {
@@ -79,7 +98,8 @@ const store: StoreType = {
                 {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'},
-            ]
+            ],
+            newMessageBody: ''
         },
         sidebar: {}
     },
@@ -93,21 +113,20 @@ const store: StoreType = {
     subscribe(observer: () => void) {
         this._callSubscriber = observer;
     },
-
-    addPost(postText: string) {
-        const newPost: PostsType = {
-            id: new Date().getTime(),
-            message: postText,
-            likesCount: 0,
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.messageForNewPost = '';
-        this._callSubscriber();
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.messageForNewPost = newText;
-        this._callSubscriber();
-    },
+    // addPost(postText: string) {
+    //     const newPost: PostsType = {
+    //         id: new Date().getTime(),
+    //         message: postText,
+    //         likesCount: 0,
+    //     }
+    //     this._state.profilePage.posts.push(newPost);
+    //     this._state.profilePage.messageForNewPost = '';
+    //     this._callSubscriber();
+    // },
+    // updateNewPostText(newText: string) {
+    //     this._state.profilePage.messageForNewPost = newText;
+    //     this._callSubscriber();
+    // },
     dispatch(action) {  // { type: 'ADD-POST' }
         if (action.type === 'ADD-POST') {
             const newPost: PostsType = {
@@ -121,6 +140,14 @@ const store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.messageForNewPost = action.newText;
             this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._callSubscriber();
+        } else if (action.type === 'SEND-MESSAGE') {
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.messages.push({id: 6, message: body});
+            this._callSubscriber()
         }
     }
 }
