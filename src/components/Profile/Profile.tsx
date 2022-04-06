@@ -1,22 +1,20 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {PostsType} from '../../redux/state';
+import {ActionsTypes, PostsType} from '../../redux/state';
 
 type PropsType = {
     posts: Array<PostsType>
-    addPost: (postMessage: string) => void
-    updateNewPostText: (newText: string) => void
     messageForNewPost: string
+    dispatch: (action: ActionsTypes) => void
 }
 const Profile = (props: PropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts updateNewPostText={props.updateNewPostText}
-                     messageForNewPost={props.messageForNewPost}
+            <MyPosts messageForNewPost={props.messageForNewPost}
                      posts={props.posts}
-                     addPost={props.addPost}/>
+                     dispatch={props.dispatch}/>
         </div>
     );
 }
