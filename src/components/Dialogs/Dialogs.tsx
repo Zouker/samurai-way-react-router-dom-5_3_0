@@ -11,9 +11,9 @@ type PropsType = {
 
 const Dialogs = (props: PropsType) => {
 
-    let dialogsElements = store._state.dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avatar={d.avatar}/>);
+    let dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avatar={d.avatar}/>);
 
-    let messagesElements = store._state.dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message}/>);
+    let messagesElements = props.messages.map(m => <Message key={m.id} id={m.id} message={m.message}/>);
 
     return (
         <div className={s.dialogs}>
