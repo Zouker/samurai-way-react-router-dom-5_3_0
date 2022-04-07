@@ -1,12 +1,13 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ActionsTypes, addPostAC, PostsType, updateNewPostTextAC} from '../../../redux/state';
+import {ActionsProfileTypes, addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
+import {PostsType} from '../../../redux/state';
 
 type PropsType = {
     posts: Array<PostsType>
     messageForNewPost: string
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ActionsProfileTypes) => void
 }
 
 const MyPosts = (props: PropsType) => {
