@@ -3,10 +3,9 @@ import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {DialogsPageType} from '../../redux/store';
-import {storeType} from '../../redux/redux-store';
 
 type PropsType = {
-    store: storeType
+    // store: StoreType
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
     dialogsPage: DialogsPageType
