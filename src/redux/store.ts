@@ -1,6 +1,7 @@
 import profileReducer, {ActionsProfileTypes} from './profile-reducer';
 import dialogsReducer, {ActionsDialogsTypes} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
+import {v1} from 'uuid';
 
 export type PostsType = {
     id: number
@@ -13,7 +14,7 @@ export type DialogsType = {
     avatar: string
 }
 export type MessageType = {
-    id: number
+    id: string
     message: string
 }
 
@@ -98,11 +99,11 @@ const store: StoreType = {
                 {id: 6, name: 'Ira', avatar: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'},
             ],
             messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'How are you?'},
-                {id: 3, message: 'Yo'},
-                {id: 4, message: 'Yo'},
-                {id: 5, message: 'Yo'},
+                {id: v1(), message: 'Hi'},
+                {id: v1(), message: 'How are you?'},
+                {id: v1(), message: 'Yo'},
+                {id: v1(), message: 'Yo'},
+                {id: v1(), message: 'Yo'},
             ],
             newMessageBody: ''
         },
