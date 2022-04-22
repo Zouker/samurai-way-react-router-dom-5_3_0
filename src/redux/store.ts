@@ -2,31 +2,34 @@ import profileReducer, {ActionsProfileTypes} from './profile-reducer';
 import dialogsReducer, {ActionsDialogsTypes} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 import {v1} from 'uuid';
+import {ActionsUsersTypes} from './users-reducer';
 
-export type PostsType = {
+type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
     avatar: string
 }
-export type MessageType = {
+type MessageType = {
     id: string
     message: string
 }
 
-export type ProfilePageType = {
+type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostsType>
 }
+
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     newMessageBody: string
 }
+
 type SidebarType = {}
 
 export type RootStateType = {
@@ -45,7 +48,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ActionsProfileTypes | ActionsDialogsTypes
+export type ActionsTypes = ActionsProfileTypes | ActionsDialogsTypes | ActionsUsersTypes
 
 //     ReturnType<typeof addPostAC>
 //     | ReturnType<typeof updateNewPostTextAC>
@@ -126,7 +129,7 @@ const store: StoreType = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-         this._callSubscriber(this._state)
+        this._callSubscriber(this._state)
 
     }
 }
