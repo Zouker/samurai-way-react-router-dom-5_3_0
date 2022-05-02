@@ -10,13 +10,7 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 
-export type PropsType = {
-    // store: StoreType
-    // dispatch: (action: ActionsTypes) => void
-}
-
-const App: React.FC<PropsType> = (props) => {
-    // const state = props.store.getState()
+const App = () => {
 
     return (
         <div className={'app-wrapper'}>

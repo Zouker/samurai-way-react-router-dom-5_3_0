@@ -4,8 +4,6 @@ import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
 
-type PropsType = {}
-
 let mapStateToProps = (state: RootStateType) => {
     return {
         dialogsPage: state.dialogsPage
