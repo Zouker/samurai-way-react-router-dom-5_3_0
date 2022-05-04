@@ -1,15 +1,7 @@
-import {ActionsTypes} from './store';
 import {v1} from 'uuid';
-
-export type DialogsType = {
-    id: number
-    name: string
-    avatar: string
-}
-export type MessageType = {
-    id: string
-    message: string
-}
+import {ActionsTypes} from './redux-store';
+import {DialogsType} from '../components/Dialogs/DialogItem/DialogItem';
+import {MessageType} from '../components/Dialogs/Message/Message';
 
 let initialState = {
     dialogs: [

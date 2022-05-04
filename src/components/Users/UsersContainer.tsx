@@ -80,7 +80,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 
-export default connect(mapStateToProps, {
+export default connect<MapStatePropsType, MapDispatchToPropsType, {}, RootStateType>(mapStateToProps, {
     follow,
     unfollow,
     setUsers,
