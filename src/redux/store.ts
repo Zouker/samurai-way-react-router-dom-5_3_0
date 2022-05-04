@@ -1,8 +1,4 @@
-import profileReducer, {ActionsProfileTypes} from './profile-reducer';
-import dialogsReducer, {ActionsDialogsTypes} from './dialogs-reducer';
-import sidebarReducer from './sidebar-reducer';
 import {v1} from 'uuid';
-import {ActionsUsersTypes} from './users-reducer';
 
 type PostsType = {
     id: number
@@ -24,7 +20,7 @@ type ProfilePageType = {
     posts: Array<PostsType>
 }
 
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     newMessageBody: string
@@ -32,23 +28,23 @@ export type DialogsPageType = {
 
 type SidebarType = {}
 
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
 
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _callSubscriber: (observer: RootStateType) => void
     // addPost: (postText: string) => void
     // updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ActionsProfileTypes | ActionsDialogsTypes | ActionsUsersTypes
+// type ActionsTypes = ActionsProfileTypes | ActionsDialogsTypes | ActionsUsersTypes
 
 //     ReturnType<typeof addPostAC>
 //     | ReturnType<typeof updateNewPostTextAC>
@@ -123,15 +119,15 @@ const store: StoreType = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action) {
+    // dispatch(action) {
 
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        // this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        // this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-        this._callSubscriber(this._state)
+        // this._callSubscriber(this._state)
 
-    }
+    // }
 }
 
 export default store;
