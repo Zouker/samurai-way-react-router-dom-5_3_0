@@ -3,14 +3,14 @@ import {ActionsTypes} from './redux-store';
 const SET_USER_DATA = 'SET_USER_DATA'
 
 let initialState: authStateType = {
-    id: null,
+    userId: null,
     email: null,
     login: null,
     isAuth: false,
 }
 
 export type authStateType = {
-    id: number | null,
+    userId: number | null,
     email: string | null,
     login: string | null,
     isAuth: boolean,
