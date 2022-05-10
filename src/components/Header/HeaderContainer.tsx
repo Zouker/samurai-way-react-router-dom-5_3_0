@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from './Header';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
 import {setAuthUserData} from '../../redux/auth-reducer';
+import axios from 'axios';
 
 type MapStatePropsType = {
     login: string | null,
