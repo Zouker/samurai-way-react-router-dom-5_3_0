@@ -1,6 +1,8 @@
 import {ActionsTypes} from './redux-store';
 import {PostsType} from '../components/Profile/MyPosts/Post/Post';
 import {ProfileType} from '../components/Profile/ProfileContainer';
+import {ThunkDispatchType, ThunkType} from './users-reducer';
+import {usersAPI} from '../api/api';
 
 let initialState = {
     messageForNewPost: '',
@@ -73,6 +75,11 @@ export const setUserProfile = (profile: ProfileType | null) => {
         type: SET_USER_PROFILE,
         profile
     } as const
+}
+export const getUserProfile = (userId: string): ThunkType => (dispatch: ThunkDispatchType) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    });
 }
 
 export default profileReducer;
