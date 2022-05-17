@@ -14,18 +14,10 @@ export const usersAPI = {
             return response.data;
         })
     },
-    postUser(id: number) {
-        return instance.post(`follow/${id}`).then(response => {
-            if (response.data.resultCode === 0) {
-                return response
-            }
-        })
+    follow(userId: number) {
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
     },
-    deleteUser(id: number) {
-        return instance.delete(`follow/${id}`).then(response => {
-            if (response.data.resultCode === 0) {
-                return response
-            }
-        })
+    unfollow(userId: number) {
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
     },
 }

@@ -3,7 +3,6 @@ import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import {UserType} from '../../redux/users-reducer';
 import {NavLink} from 'react-router-dom';
-import {usersAPI} from '../../api/api';
 
 type PropsType = {
     users: Array<UserType>
@@ -14,7 +13,6 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     followingInProgress: number[]
-    toggleFollowingProgress: (isFetching: boolean, id: number) => void
 }
 
 const Users: React.FC<PropsType> = (props) => {
@@ -46,30 +44,25 @@ const Users: React.FC<PropsType> = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, u.id);
-                                usersAPI.deleteUser(u.id).then(() => props.unfollow(u.id)).then(() => {
-                                    props.toggleFollowingProgress(false, u.id);
-                                });
+                            ? <button disabled={props.followingInProgress
+                                .some(id => id === u.id)} onClick={() => {
+                                props.unfollow(u.id)
                             }}>Unfollow</button>
                             : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, u.id);
-                                usersAPI.postUser(u.id).then(() => props.follow(u.id)).then(() => {
-                                    props.toggleFollowingProgress(false, u.id);
-                                });
+                                props.follow(u.id)
                             }}>Follow</button>}
                                 </div>
                                 </span>
                     <span>
-                                <span>
-                                <div>{u.name}</div>
-                                <div>{u.status}</div>
-                                </span>
-                                <span>
+                        <span>
+                            <div>{u.name}</div>
+                            <div>{u.status}</div>
+                        </span>
+                            <span>
                                 <div>{'u.location.country'}</div>
                                 <div>{'u.location.city'}</div>
-                                </span>
-                                </span>
+                            </span>
+                    </span>
                 </div>)
             }
         </div>
