@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/preloader/Preloader';
 import {ProfileType} from '../ProfileContainer';
+import ProfileStatus from './ProfileStatus'
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -13,13 +14,15 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
     }
     return (
         <div>
-            <div className={s.profileImg}>
-                <img
-                    src={'https://hylinecruises.com/wp-content/uploads/2019/09/Winner_Outdoor-e1628881489780-1080x400.jpg'}
-                    alt={'Profile Img'}/>
-            </div>
+            {/*<div className={s.profileImg}>*/}
+            {/*    <img*/}
+            {/*        src={'https://hylinecruises.com/wp-content/uploads/2019/09/Winner_Outdoor-e1628881489780-1080x400.jpg'}*/}
+            {/*        alt={'Profile Img'}/>*/}
+            {/*</div>*/}
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={'large avatar'}/>
+                <ProfileStatus status={'Hello my friends'}/>
+
                 <div><b>Full name:</b> <span>{props.profile.fullName}</span></div>
                 <div><b>About Me:</b> <span>{props.profile.aboutMe}</span></div>
                 <div><b>Looking For A Job:</b> <span>{props.profile.lookingForAJob}</span></div>
