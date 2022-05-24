@@ -5,6 +5,8 @@ import {RootStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
 import {DialogsType} from './DialogItem/DialogItem';
 import {MessageType} from './Message/Message';
+import React from 'react';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type mapStateToPropsType = {
     dialogs: Array<DialogsType>,
@@ -38,6 +40,6 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     }
 }
 
-const DialogsContainer = connect<mapStateToPropsType, mapDispatchToPropsType, {}, RootStateType>(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = withAuthRedirect(connect<mapStateToPropsType, mapDispatchToPropsType, {}, RootStateType>(mapStateToProps, mapDispatchToProps)(Dialogs));
 
 export default DialogsContainer;

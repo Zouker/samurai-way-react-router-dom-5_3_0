@@ -6,7 +6,11 @@ import usersReducer, {ActionsUsersTypes} from './users-reducer';
 import authReducer, {ActionsAuthTypes} from './auth-reducer';
 import thunkMiddleWare from 'redux-thunk';
 
-export type ActionsTypes = ActionsProfileTypes | ActionsDialogsTypes | ActionsUsersTypes | ActionsAuthTypes
+export type ActionsTypes =
+    ActionsProfileTypes
+    | ActionsDialogsTypes
+    | ActionsUsersTypes
+    | ActionsAuthTypes
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

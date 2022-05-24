@@ -1,15 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-    follow,
-    getUsers,
-    initialStateType,
-    setCurrentPage,
-    unfollow
-} from '../../redux/users-reducer';
+import {follow, getUsers, initialStateType, setCurrentPage, unfollow} from '../../redux/users-reducer';
 import {RootStateType} from '../../redux/redux-store';
 import Users from './Users';
 import {Preloader} from '../common/preloader/Preloader';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStatePropsType = {
     usersPage: initialStateType,
@@ -66,9 +61,9 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 
-export default connect<MapStatePropsType, MapDispatchToPropsType, {}, RootStateType>(mapStateToProps, {
+export default withAuthRedirect(connect<MapStatePropsType, MapDispatchToPropsType, {}, RootStateType>(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     getUsers,
-})(UsersContainer);
+})(UsersContainer));
