@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem, {DialogsType} from './DialogItem/DialogItem';
 import Message, {MessageType} from './Message/Message';
 import {Redirect} from 'react-router-dom';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {AddMessageFormRedux} from './AddMessageForm/AddMessageForm';
 
 type DialogsPageType = {
     dialogs: Array<DialogsType>
@@ -38,26 +38,6 @@ const Dialogs = (props: DialogsPageType) => {
         </div>
     );
 };
-
-type DialogsFormPropsType = {
-    newMessageBody: string
-}
-
-const AddMessageForm: FC<InjectedFormProps<DialogsFormPropsType>> = (props) => {
-
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'}/>
-            </div>
-            <div>
-                <button type={'submit'}>Send</button>
-            </div>
-        </form>
-    )
-}
-
-const AddMessageFormRedux = reduxForm<DialogsFormPropsType>({form: 'dialogAddMessageForm'})(AddMessageForm)
 
 
 export default Dialogs;
