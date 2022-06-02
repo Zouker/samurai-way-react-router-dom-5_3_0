@@ -23,8 +23,7 @@ const authReducer = (state: authStateType = initialState, action: ActionsTypes):
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         default:
             return state;
@@ -33,9 +32,9 @@ const authReducer = (state: authStateType = initialState, action: ActionsTypes):
 
 export type ActionsAuthTypes = ReturnType<typeof setAuthUserData>
 
-export const setAuthUserData = (userId: number, email: string, login: string) => ({
+export const setAuthUserData = (userId: number | null, email: string | null, login: | null, isAuth: boolean) => ({
     type: SET_USER_DATA,
-    data: {userId, email, login}
+    payload: {userId, email, login, isAuth}
 }) as const
 
 export const getAuthUserData = (): ThunkType => (dispatch: ThunkDispatchType) => {
@@ -43,10 +42,27 @@ export const getAuthUserData = (): ThunkType => (dispatch: ThunkDispatchType) =>
         .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
-                dispatch(setAuthUserData(id, email, login))
+                dispatch(setAuthUserData(id, email, login, true))
             }
         });
+}
 
+export const login = (email: string, password: string, rememberMe: boolean): ThunkType => (dispatch: ThunkDispatchType) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        });
+}
+
+export const logout = (): ThunkType => (dispatch: ThunkDispatchType) => {
+    authAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false))
+            }
+        });
 }
 
 export default authReducer;
