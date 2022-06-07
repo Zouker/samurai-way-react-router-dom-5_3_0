@@ -4,7 +4,6 @@ import {follow, getUsers, initialStateType, setCurrentPage, unfollow} from '../.
 import {RootStateType} from '../../redux/redux-store';
 import Users from './Users';
 import {Preloader} from '../common/preloader/Preloader';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
 
 type MapStatePropsType = {
@@ -69,5 +68,4 @@ export default compose<React.ComponentType>(
         setCurrentPage,
         getUsers,
     }),
-    withAuthRedirect
 )(UsersContainer)

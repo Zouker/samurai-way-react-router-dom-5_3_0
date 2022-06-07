@@ -6,12 +6,14 @@ import usersReducer, {ActionsUsersTypes} from './users-reducer';
 import authReducer, {ActionsAuthTypes} from './auth-reducer';
 import thunkMiddleWare from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
+import appReducer, {ActionsAppTypes} from './app-reducer';
 
 export type ActionsTypes =
     ActionsProfileTypes
     | ActionsDialogsTypes
     | ActionsUsersTypes
     | ActionsAuthTypes
+    | ActionsAppTypes
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -20,6 +22,7 @@ let rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
+    app: appReducer
 });
 
 export type RootStateType = ReturnType<typeof rootReducer>
