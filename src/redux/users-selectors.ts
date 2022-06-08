@@ -1,0 +1,26 @@
+import {RootStateType} from './redux-store';
+import {UserType} from './users-reducer';
+
+export const getUsers = (state: RootStateType): Array<UserType> =>{
+return state.usersPage.users
+}
+
+export const getPageSize = (state: RootStateType) =>{
+    return state.usersPage.pageSize
+}
+
+export const getTotalUsersCount = (state: RootStateType) =>{
+    return state.usersPage.totalUsersCount
+}
+
+export const getCurrentPage = (state: RootStateType) =>{
+    return state.usersPage.currentPage
+}
+
+export const getIsFetching = (state: RootStateType) =>{
+    return state.usersPage.isFetching
+}
+
+export const getFollowingInProgress = (state: RootStateType) =>{
+    return state.usersPage.followingInProgress
+}
