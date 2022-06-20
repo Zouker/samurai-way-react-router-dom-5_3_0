@@ -9,10 +9,12 @@ type PropsType = {
     addPost: (postMessage: string) => void
 }
 
-const MyPosts = (props: PropsType) => {
+const MyPosts = React.memo((props: PropsType) => {
 
-    const postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message}
-                                                     likesCount={p.likesCount}/>)
+    const postsElements = [...props.posts]
+        .reverse()
+        .map(p => <Post key={p.id} id={p.id} message={p.message}
+                        likesCount={p.likesCount}/>)
 
     const onAddPost = (values: { newPostText: string }) => {
         props.addPost(values.newPostText)
@@ -29,6 +31,6 @@ const MyPosts = (props: PropsType) => {
         </div>
 
     );
-}
+})
 
 export default MyPosts;
