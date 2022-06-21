@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
+import {UserType} from '../redux/users-reducer';
 
 const instance = axios.create({
     withCredentials: true,
@@ -15,10 +16,10 @@ export const usersAPI = {
         })
     },
     follow(userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post<'', AxiosResponse<UserType>>(`follow/${userId}`)
     },
     unfollow(userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete<'', AxiosResponse<UserType>>(`follow/${userId}`)
     },
     getProfile(userId: string) {
         console.log('Obsolete method. Please use profileAPI object.')

@@ -10,17 +10,12 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo = (props: ProfileInfoPropsType) => {
+const ProfileInfo:React.FC<ProfileInfoPropsType> = (props) => {
     if (!props.profile) {
         return <Preloader/>
     }
     return (
         <div>
-            {/*<div className={s.profileImg}>*/}
-            {/*    <img*/}
-            {/*        src={'https://hylinecruises.com/wp-content/uploads/2019/09/Winner_Outdoor-e1628881489780-1080x400.jpg'}*/}
-            {/*        alt={'Profile Img'}/>*/}
-            {/*</div>*/}
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={'large avatar'}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>

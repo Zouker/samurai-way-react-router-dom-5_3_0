@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {RootStateType} from '../../../redux/redux-store';
 import {Dispatch} from 'redux';
 import {PostsType} from './Post/Post';
-import {addPostAC} from '../../../redux/profile-reducer';
+import {addPost} from '../../../redux/profile-reducer';
 
 type mapStateToPropsType = {
     posts: Array<PostsType>
@@ -25,7 +25,7 @@ let mapStateToProps = (state: RootStateType): mapStateToPropsType => {
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         addPost: (newPostText: string) => {
-            dispatch(addPostAC(newPostText))
+            dispatch(addPost(newPostText))
         },
     }
 }
