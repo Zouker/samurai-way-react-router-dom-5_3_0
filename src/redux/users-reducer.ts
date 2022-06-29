@@ -34,6 +34,7 @@ let initialState: initialStateType = {
     currentPage: 1,
     isFetching: true,
     followingInProgress: [],
+    portionSize: 10
 }
 
 export type initialStateType = {
@@ -43,6 +44,7 @@ export type initialStateType = {
     currentPage: number,
     isFetching: boolean,
     followingInProgress: number[],
+    portionSize: number
 }
 
 const usersReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {

@@ -12,12 +12,14 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     followingInProgress: number[]
+    portionSize: number
 }
 
-const Users: React.FC<PropsType> = ({users, totalUsersCount, pageSize, currentPage, onPageChanged, ...props}) => {
+const Users: React.FC<PropsType> = ({users, totalUsersCount, pageSize, currentPage, onPageChanged, portionSize,...props}) => {
 
     return <div>
-        <Paginator totalUsersCount={totalUsersCount}
+        <Paginator portionSize={portionSize}
+                   totalItemsCount={totalUsersCount}
                    pageSize={pageSize}
                    currentPage={currentPage}
                    onPageChanged={onPageChanged}
