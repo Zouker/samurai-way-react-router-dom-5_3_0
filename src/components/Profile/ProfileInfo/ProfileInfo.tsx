@@ -35,7 +35,6 @@ const ProfileInfo:React.FC<ProfileInfoPropsType> = (props) => {
                 <div><b>GitHub:</b> <span>{props.profile.contacts.github}</span></div>
                 <div><b>MainLink:</b> <span>{props.profile.contacts.mainLink}</span></div>
 
-
             </div>
         </div>
     );
