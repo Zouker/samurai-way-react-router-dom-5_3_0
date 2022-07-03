@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
-import {getStatus, getUserProfile, updateStatus} from '../../redux/profile-reducer';
+import {getStatus, getUserProfile, savePhoto, updateStatus} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
@@ -44,6 +44,7 @@ type MapDispatchPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (status: string) => void
     updateStatus: (status: string) => void
+    savePhoto: (file: string) => void
 }
 
 type PathParamsType = {
@@ -56,7 +57,8 @@ type OwnPropsType = MapStatePropsType & MapDispatchPropsType
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 
 class ProfileContainer extends React.Component<PropsType> {
-    componentDidMount() {
+
+    refreshProfile() {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.authorizedUserId?.toString() as string
@@ -69,13 +71,25 @@ class ProfileContainer extends React.Component<PropsType> {
         this.props.getStatus(userId)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId)
+            this.refreshProfile()
+    }
+
     render() {
 
         return (
             <Profile {...this.props}
+                     isOwner={!this.props.match.params.userId}
                      profile={this.props.profile}
                      status={this.props.status}
-                     updateStatus={this.props.updateStatus}/>
+                     updateStatus={this.props.updateStatus}
+                     savePhoto={this.props.savePhoto}
+            />
         );
     }
 }
@@ -91,7 +105,8 @@ export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateType>(mapStateToProps, {
         getUserProfile,
         getStatus,
-        updateStatus
+        updateStatus,
+        savePhoto,
     }),
     withRouter,
     withAuthRedirect,

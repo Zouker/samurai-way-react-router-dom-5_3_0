@@ -3,21 +3,32 @@ import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/preloader/Preloader';
 import {ProfileType} from '../ProfileContainer';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import userPhoto from '../../../assets/images/user.png';
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: string) => void
 }
 
-const ProfileInfo:React.FC<ProfileInfoPropsType> = (props) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     if (!props.profile) {
         return <Preloader/>
     }
+
+    const onMainPhotoSelected = (e: { target: any }) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large} alt={'large avatar'}/>
+                <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} alt={'large avatar'}/>
+                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
 
                 <div><b>Full name:</b> <span>{props.profile.fullName}</span></div>
