@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 import {UserType} from '../redux/users-reducer';
+import {ProfileType} from '../components/Profile/ProfileContainer';
 
 const instance = axios.create({
     withCredentials: true,
@@ -21,14 +22,14 @@ export const usersAPI = {
     unfollow(userId: number) {
         return instance.delete<'', AxiosResponse<UserType>>(`follow/${userId}`)
     },
-    getProfile(userId: string) {
+    getProfile(userId: number | null) {
         console.log('Obsolete method. Please use profileAPI object.')
         return profileAPI.getProfile(userId)
     }
 }
 
 export const profileAPI = {
-    getProfile(userId: string) {
+    getProfile(userId: number | null) {
         return instance.get(`profile/` + userId);
     },
     getStatus(userId: string) {
@@ -45,6 +46,9 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    saveProfile(profile: ProfileType | null){
+        return instance.put(`profile`, profile);
     }
 }
 

@@ -3,6 +3,7 @@ import {PostsType} from '../components/Profile/MyPosts/Post/Post';
 import {PhotosType, ProfileType} from '../components/Profile/ProfileContainer';
 import {ThunkDispatchType, ThunkType} from './users-reducer';
 import {profileAPI, usersAPI} from '../api/api';
+import {stopSubmit} from 'redux-form';
 
 let initialState = {
     messageForNewPost: '',
@@ -107,7 +108,7 @@ export const savePhotoSuccess = (photos: PhotosType) => {
     } as const
 }
 
-export const getUserProfile = (userId: string): ThunkType => async (dispatch: ThunkDispatchType) => {
+export const getUserProfile = (userId: number | null): ThunkType => async (dispatch: ThunkDispatchType) => {
     const response = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(response.data))
 }
@@ -128,6 +129,17 @@ export const savePhoto = (file: string): ThunkType => async (dispatch: ThunkDisp
     const response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+
+export const saveProfile = (profile: ProfileType | null): ThunkType => async (dispatch: ThunkDispatchType, getState) => {
+    const userId = getState().auth.userId
+    const response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId))
+    } else {
+        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}));
+        return Promise.reject(response.data.messages[0]);
     }
 }
 
