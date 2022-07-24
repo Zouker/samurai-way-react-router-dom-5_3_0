@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Header.module.css';
 import {NavLink} from 'react-router-dom';
+import {Button} from 'antd';
 
 type HeaderPropsType = {
     isAuth: boolean,
@@ -16,7 +17,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
                 alt={'Lighthouse img'}/>
             <div className={s.loginBlock}>
                 {props.isAuth
-                    ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
+                    ? <div>{props.login} - <Button type={'default'} onClick={props.logout}>Log out</Button></div>
                     : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>

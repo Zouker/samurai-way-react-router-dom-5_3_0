@@ -1,7 +1,7 @@
 import React from 'react';
 import {login} from '../../redux/auth-reducer';
 import {useFormik} from 'formik';
-import {Checkbox, Input, Space} from 'antd';
+import {Button, Checkbox, Input, Space} from 'antd';
 import {Redirect} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../redux/redux-store';
 import styles from './Login.module.css'
@@ -59,7 +59,8 @@ export const LoginForm = () => {
                         <Input placeholder="Login"
                                {...formik.getFieldProps('email')}
                         />
-                        {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
+                        {formik.errors.email && formik.touched.email &&
+                            <div className={styles.error}>{formik.errors.email}</div>}
 
                         <Input.Password
                             placeholder="Password"
@@ -67,7 +68,8 @@ export const LoginForm = () => {
                             iconRender={visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
                         />
                     </Space>
-                    {formik.errors.password && formik.touched.password && <div>{formik.errors.password}</div>}
+                    {formik.errors.password && formik.touched.password &&
+                        <div className={styles.error}>{formik.errors.password}</div>}
                     <div>
                         <Checkbox
                             checked={formik.values.rememberMe}
@@ -78,7 +80,7 @@ export const LoginForm = () => {
                     {captchaUrl && <input
                         {...formik.getFieldProps('captchaUrl')}
                     />}
-                    <button type="submit">Login</button>
+                    <Button type="default" htmlType="submit">Login</Button>
                 </form>
             </div>
         </div>

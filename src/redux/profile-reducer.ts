@@ -4,6 +4,7 @@ import {PhotosType, ProfileType} from '../components/Profile/ProfileContainer';
 import {ThunkDispatchType, ThunkType} from './users-reducer';
 import {profileAPI, usersAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
+import {setAppError} from './app-reducer';
 
 let initialState = {
     messageForNewPost: '',
@@ -119,9 +120,13 @@ export const getStatus = (status: string): ThunkType => async (dispatch: ThunkDi
 }
 
 export const updateStatus = (status: string): ThunkType => async (dispatch: ThunkDispatchType) => {
-    const response = await profileAPI.updateStatus(status)
-    if (response.data.resultCode === 0) {
-        dispatch(setStatus(status))
+    try {
+        const response = await profileAPI.updateStatus(status)
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    } catch (error: any) {
+        dispatch(setAppError(error.message))
     }
 }
 

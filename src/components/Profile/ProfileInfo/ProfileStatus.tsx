@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from 'react';
+import {Input} from 'antd';
 
 type ProfileStatusPropsType = {
     status: string
@@ -46,7 +47,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 }
                 {this.state.editMode &&
                     <div>
-                        <input onChange={this.onStatusChange} autoFocus onBlur={this.deactivateEditMode}
+                        <Input onChange={this.onStatusChange} autoFocus onBlur={this.deactivateEditMode}
                                value={this.state.status}/>
                     </div>
                 }

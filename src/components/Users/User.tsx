@@ -3,6 +3,7 @@ import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from 'react-router-dom';
 import {UserType} from '../../redux/users-reducer';
+import {Button} from 'antd';
 
 type PropsType = {
     user: UserType
@@ -24,13 +25,13 @@ const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}
                     </div>
                     <div>
                         {user.followed
-                            ? <button disabled={followingInProgress
+                            ? <Button type={'default'} disabled={followingInProgress
                                 .some(id => id === user.id)} onClick={() => {
                                 unfollow(user.id)
-                            }}>Unfollow</button>
-                            : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                            }}>Unfollow</Button>
+                            : <Button type={'default'} disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
                                 follow(user.id)
-                            }}>Follow</button>}
+                            }}>Follow</Button>}
                                 </div>
                 </span>
             <span>

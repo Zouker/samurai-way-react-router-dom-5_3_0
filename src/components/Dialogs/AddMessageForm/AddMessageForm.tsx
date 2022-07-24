@@ -2,6 +2,7 @@ import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import React, {FC} from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from '../../common/FormsControls/FormsControls';
+import {Button} from 'antd';
 
 type DialogsFormPropsType = {
     newMessageBody: string
@@ -18,7 +19,7 @@ const AddMessageForm: FC<InjectedFormProps<DialogsFormPropsType>> = (props) => {
                        placeholder={'Enter your message'}/>
             </div>
             <div>
-                <button type={'submit'}>Send</button>
+                <Button type={'default'} htmlType={'submit'}>Send</Button>
             </div>
         </form>
     )
