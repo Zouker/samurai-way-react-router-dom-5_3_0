@@ -1,7 +1,7 @@
-import {ActionsTypes, RootStateType} from './redux-store';
+import { RootStateType} from './redux-store';
 import {usersAPI} from '../api/api';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
-import {Action} from 'redux';
+import {Action, AnyAction} from 'redux';
 import {updateObjectInArray} from '../utils/object-helpers';
 import {AxiosResponse} from 'axios';
 
@@ -47,7 +47,7 @@ export type initialStateType = {
     portionSize: number
 }
 
-const usersReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
+const usersReducer = (state: initialStateType = initialState, action: ActionsUsersTypes): initialStateType => {
 
     switch (action.type) {
         case FOLLOW:
@@ -134,8 +134,9 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     } as const
 }
 
-export type ThunkType<A extends Action = Action> = ThunkAction<void, RootStateType, unknown, ActionsTypes | A>
-export type ThunkDispatchType = ThunkDispatch<RootStateType, unknown, ActionsTypes>
+
+export type ThunkType<A extends Action = Action> = ThunkAction<void, RootStateType, unknown, AnyAction | A>
+export type ThunkDispatchType = ThunkDispatch<RootStateType, unknown, AnyAction>
 
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {

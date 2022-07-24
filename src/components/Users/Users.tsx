@@ -15,7 +15,15 @@ type PropsType = {
     portionSize: number
 }
 
-const Users: React.FC<PropsType> = ({users, totalUsersCount, pageSize, currentPage, onPageChanged, portionSize,...props}) => {
+const Users: React.FC<PropsType> = ({
+                                        users,
+                                        totalUsersCount,
+                                        pageSize,
+                                        currentPage,
+                                        onPageChanged,
+                                        portionSize,
+                                        ...props
+                                    }) => {
 
     return <div>
         <Paginator portionSize={portionSize}

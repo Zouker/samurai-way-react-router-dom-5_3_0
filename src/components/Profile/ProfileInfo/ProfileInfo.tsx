@@ -5,6 +5,7 @@ import {ContactsType, ProfileType} from '../ProfileContainer';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../../../assets/images/user.png';
 import ProfileDataForm from './ProfileDataForm';
+import {Button} from 'antd';
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -75,7 +76,7 @@ type ProfileDataType = {
 const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
         {isOwner && <div>
-            <button onClick={goToEditMode}>edit</button>
+            <Button type="primary" onClick={goToEditMode}>edit</Button>
         </div>}
         <div>
             <b>Full name: </b> {profile.fullName}
