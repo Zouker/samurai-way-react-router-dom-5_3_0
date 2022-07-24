@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import 'antd/dist/antd.css'
 import Navbar from './components/Navbar/Navbar';
 import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import News from './components/News/News';
