@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './users.module.css';
+import styles from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from 'react-router-dom';
 import {UserType} from '../../redux/users-reducer';
@@ -15,7 +15,7 @@ type PropsType = {
 const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}) => {
 
     return (
-        <div>
+        <div className={styles.user}>
                 <span>
                     <div>
                         <NavLink to={'/profile/' + user.id}>
@@ -25,11 +25,11 @@ const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}
                     </div>
                     <div>
                         {user.followed
-                            ? <Button type={'default'} disabled={followingInProgress
+                            ? <Button className={styles.followUnfollowButton} type={'default'} shape={'round'} disabled={followingInProgress
                                 .some(id => id === user.id)} onClick={() => {
                                 unfollow(user.id)
                             }}>Unfollow</Button>
-                            : <Button type={'default'} disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                            : <Button className={styles.followUnfollowButton} type={'default'} shape={'round'} disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
                                 follow(user.id)
                             }}>Follow</Button>}
                                 </div>

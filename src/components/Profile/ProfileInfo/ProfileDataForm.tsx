@@ -10,7 +10,7 @@ const ProfileDataForm = (props: InjectedFormProps<ProfileType>) => {
     const {handleSubmit, initialValues, error} = props
     return <form onSubmit={handleSubmit}>
         <div>
-            <Button type={'default'} onClick={handleSubmit}>save</Button>
+            <Button type="default" shape="round" onClick={handleSubmit}>save</Button>
             {error && <div className={style.formSummaryError}>
                 {error}
             </div>}

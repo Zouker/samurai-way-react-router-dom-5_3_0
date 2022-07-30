@@ -1,5 +1,6 @@
 import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import {Input} from 'antd';
+import styles from './ProfileStatusWithHooks.module.css'
 
 type ProfileStatusPropsType = {
     status: string
@@ -27,7 +28,7 @@ const ProfileStatusWithHooks: FC<ProfileStatusPropsType> = (props) => {
     }
 
     return (
-        <div>
+        <div className={styles.status}>
             {!editMode &&
                 < div>
                     <b>Status:</b> <span onDoubleClick={activateEditMode}> {props.status || '-----'}</span>
