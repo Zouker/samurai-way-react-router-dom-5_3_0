@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Paginator.module.css';
 import cn from 'classnames'
-import {LeftOutlined, RightOutlined} from '@ant-design/icons';
+import {LeftSquareTwoTone, RightSquareTwoTone} from '@ant-design/icons';
 
 type PropsType = {
     totalItemsCount: number
@@ -27,22 +27,25 @@ const Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage,
     return (
         <div className={cn(styles.paginator)}>
             {portionNumber > 1 &&
-                <LeftOutlined onClick={() => {
+                <LeftSquareTwoTone className={styles.button} onClick={() => {
                     setPortionNumber(portionNumber - 1)
-                }}>PREV</LeftOutlined>}
+                }}>PREV</LeftSquareTwoTone>}
 
-            {pages
-                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                .map(p => {
-                    return <span
-                        key={p}
-                        className={cn({[styles.selectedPage]: currentPage === p}, styles.pageNumber)}
-                        onClick={() => {
-                            onPageChanged(p)
-                        }}>{p}</span>
-                })}
+            <div className={styles.paginatorNumbers}>
+                {pages
+                    .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                    .map(p => {
+                        return <span
+                            key={p}
+                            className={cn({[styles.selectedPage]: currentPage === p}, styles.pageNumber)}
+                            onClick={() => {
+                                onPageChanged(p)
+                            }}>{p}</span>
+                    })}
+            </div>
             {portionCount > portionNumber &&
-                <RightOutlined onClick={() => setPortionNumber(portionNumber + 1)}>NEXT</RightOutlined>}
+                <RightSquareTwoTone className={styles.button}
+                                    onClick={() => setPortionNumber(portionNumber + 1)}>NEXT</RightSquareTwoTone>}
         </div>
     );
 };

@@ -1,0 +1,31 @@
+.userPhoto {
+    width: 100px;
+    height: 100px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user {
+    text-align: center;
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+}
+
+.followUnfollowButton {
+    margin: 10px;
+}

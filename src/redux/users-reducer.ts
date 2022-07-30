@@ -29,7 +29,7 @@ type UserLocationType = {
 
 let initialState: initialStateType = {
     users: [],
-    pageSize: 5,
+    pageSize: 18,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,

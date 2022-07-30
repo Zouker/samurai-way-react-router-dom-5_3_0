@@ -1,11 +1,10 @@
 .header {
     grid-area: h;
-    background-color: #9e99a9;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.header img {
-    height: 120px;
-    margin: 10px;
+.logo {
+    height: 130px;
 }
 
 .loginBlock {
@@ -14,5 +13,20 @@
 
 .loginBlock a {
     color: white;
+    text-shadow: #1890ff 0 0 2px;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logout {
+    padding: 20px 0;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.avatar {
+    border-radius: 50%;
+    height: 60px;
+    padding: 0 10px;
 }

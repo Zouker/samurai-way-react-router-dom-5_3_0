@@ -35,8 +35,8 @@ export const LoginForm = () => {
             }
             if (!values.password) {
                 errors.password = 'Required';
-            } else if (values.password.length <= 7) {
-                errors.password = 'Must be more than 7 symbols'
+            } else if (values.password.length <= 3) {
+                errors.password = 'Must be more than 3 symbols'
             }
             return errors;
         },
@@ -51,9 +51,17 @@ export const LoginForm = () => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={styles.wrapper}>
+            <div className={styles.info}>
+                <p>To log in get registered <a href={'https://social-network.samuraijs.com/'}
+                                               target={'_blank'} rel="noopener noreferrer">here</a> or
+                    use common test
+                    account credentials:</p>
+                <p>Email: free@samuraijs.com</p>
+                <p>Password: free</p>
+            </div>
             <div className={styles.container}>
+                <h1 className={styles.login}>Login</h1>
                 <form onSubmit={formik.handleSubmit} className={styles.form}>
                     <Space direction="vertical">
                         <Input placeholder="Login"
@@ -77,8 +85,8 @@ export const LoginForm = () => {
                         /> Remember me
                     </div>
                     {captchaUrl && <img src={captchaUrl} alt={'captcha'}/>}
-                    {captchaUrl && <input
-                        {...formik.getFieldProps('captchaUrl')}
+                    {captchaUrl && <input className={styles.captchaInput}
+                                          {...formik.getFieldProps('captchaUrl')}
                     />}
                     <Button type="default" htmlType="submit">Login</Button>
                 </form>
