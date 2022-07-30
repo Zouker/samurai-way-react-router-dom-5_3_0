@@ -1,6 +1,7 @@
 import {authAPI, securityAPI} from '../api/api';
 import {ThunkDispatchType, ThunkType} from './users-reducer';
 import {ActionsTypes} from './redux-store';
+import {setAppError} from './app-reducer';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS'
@@ -25,7 +26,6 @@ const authReducer = (state: authStateType = initialState, action: ActionsTypes):
 
     switch (action.type) {
         case SET_USER_DATA:
-        // @ts-ignore
         case GET_CAPTCHA_URL_SUCCESS:
             return {
                 ...state,
@@ -36,7 +36,7 @@ const authReducer = (state: authStateType = initialState, action: ActionsTypes):
     }
 }
 
-export type ActionsAuthTypes = ReturnType<typeof setAuthUserData>
+export type ActionsAuthTypes = ReturnType<typeof setAuthUserData> | ReturnType<typeof getCaptchaUrlSuccess>
 
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
     type: SET_USER_DATA,
@@ -57,15 +57,15 @@ export const getAuthUserData = (): ThunkType => async (dispatch: ThunkDispatchTy
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch: ThunkDispatchType) => {
-
+    dispatch(setAppError(null))
     const response = await authAPI.login(email, password, rememberMe, captcha);
     if (response.data.resultCode === 0) {
         // success, get auth data
         dispatch(getAuthUserData())
-    } else {
-        if (response.data.resultCode === 10) {
-            dispatch(getCaptchaUrl())
-        }
+    } else if (response.data.resultCode === 10) {
+        dispatch(getCaptchaUrl())
+    } else if (response.data.resultCode === 1) {
+        dispatch(setAppError(response.data.messages[0]))
     }
 }
 

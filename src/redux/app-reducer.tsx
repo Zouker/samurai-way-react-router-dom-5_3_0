@@ -43,9 +43,6 @@ export const initializeApp = (): ThunkType => (dispatch: ThunkDispatchType) => {
         .then(() => {
             dispatch(initializedSuccess());
         })
-        .catch((error) => {
-            dispatch(setAppError(error.messages))
-        })
 }
 
 export default appReducer;
