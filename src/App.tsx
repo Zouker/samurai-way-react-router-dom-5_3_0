@@ -14,6 +14,7 @@ import {Preloader} from './components/common/preloader/Preloader';
 import {withSuspense} from './hoc/withSuspense';
 import {LoginForm} from './components/Login/Login';
 import {notification} from 'antd';
+import {Footer} from './components/Footer/Footer';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -64,7 +65,7 @@ class App extends React.Component<AppPropsType> {
         }
 
         return (
-            <div className={'app-wrapper app-wrapper-content'}>
+            <div className={'app-wrapper'}>
                 <HeaderContainer/>
                 <Navbar/>
                 <Switch>
@@ -79,6 +80,7 @@ class App extends React.Component<AppPropsType> {
                     <Route path="/login" render={withSuspense(LoginForm)}/>
                     <Route path={'*'} render={() => <div>404 NOT FOUND </div>}/>
                 </Switch>
+                <Footer/>
             </div>
         );
     }

@@ -1,0 +1,7 @@
+.container {
+    grid-area: f;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+}
