@@ -7,7 +7,7 @@ let state = {
         {id: 1, message: 'Hi, how are you?', likesCount: 0},
         {id: 2, message: 'It\'s my first post', likesCount: 23},
     ],
-    profile: null as null | ProfileType,
+    profile: {} as ProfileType,
     status: '',
 }
 

@@ -8,13 +8,13 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
 
 export type ProfileType = {
-    aboutMe: string
+    aboutMe?: string
     contacts: ContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: PhotosType
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    fullName?: string
+    userId?: number
+    photos?: PhotosType
 }
 
 export type ContactsType = {

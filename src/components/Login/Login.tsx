@@ -24,7 +24,7 @@ export const LoginForm = () => {
             email: '',
             password: '',
             rememberMe: false,
-            captchaUrl: null
+            captchaUrl: ''
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -41,7 +41,6 @@ export const LoginForm = () => {
             return errors;
         },
         onSubmit: ({email, password, rememberMe, captchaUrl}) => {
-            // @ts-ignore
             dispatch(login(email, password, rememberMe, captchaUrl))
         },
     })

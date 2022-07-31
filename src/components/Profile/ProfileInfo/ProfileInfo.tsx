@@ -48,7 +48,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
         <div>
             <div className={s.descriptionBlock}>
                 <div className={s.avatar}>
-                    <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt={'large avatar'}/>
+                    <img src={profile.photos?.large || userPhoto} className={s.mainPhoto} alt={'large avatar'}/>
                 </div>
                 <div>
                     <Button
@@ -107,7 +107,7 @@ const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}
             <b>About Me: </b> {profile.aboutMe}
         </div>
         <div>
-            <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
+            <b>Contacts: </b> {profile.contacts && Object.keys(profile.contacts).map(key => {
 
             return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
         })}

@@ -12,7 +12,7 @@ let initialState = {
         {id: 1, message: 'Hi, how are you?', likesCount: 0},
         {id: 2, message: 'It\'s my first post', likesCount: 23},
     ],
-    profile: null as null | ProfileType,
+    profile: {} as  ProfileType,
     status: '',
 }
 
@@ -21,6 +21,7 @@ const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
+const SET_USER_PHOTOS = 'SET_USER_PHOTOS';
 
 export type InitialStateType = typeof initialState
 
@@ -51,6 +52,15 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
                 profile: action.profile
             }
         }
+        case SET_USER_PHOTOS: {
+            if (action.photos) {
+                return {
+                    ...state, profile: {...state.profile, photos: action.photos}
+                }
+            }
+            return state
+
+        }
         case DELETE_POST: {
             return {
                 ...state,
@@ -74,6 +84,7 @@ export type ActionsProfileTypes =
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
+    | ReturnType<typeof setUserPhotos>
 
 export const addPost = (newPostText: string) => {
     return {
@@ -82,10 +93,16 @@ export const addPost = (newPostText: string) => {
     } as const
 }
 
-export const setUserProfile = (profile: ProfileType | null) => {
+export const setUserProfile = (profile: ProfileType) => {
     return {
         type: SET_USER_PROFILE,
         profile
+    } as const
+}
+export const setUserPhotos = (photos: PhotosType | null) => {
+    return {
+        type: SET_USER_PHOTOS,
+        photos
     } as const
 }
 export const setStatus = (status: string) => {
@@ -138,6 +155,7 @@ export const savePhoto = (file: string): ThunkType => async (dispatch: ThunkDisp
 }
 
 export const saveProfile = (profile: ProfileType | null): ThunkType => async (dispatch: ThunkDispatchType, getState) => {
+    debugger
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
