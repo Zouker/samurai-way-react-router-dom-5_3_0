@@ -11,7 +11,6 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 type mapStateToPropsType = {
     dialogs: Array<DialogsType>,
     messages: Array<MessageType>,
-    // newMessageBody: string,
     isAuth: boolean,
 }
 
@@ -23,7 +22,6 @@ let mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        // newMessageBody: state.dialogsPage.newMessageBody,
         isAuth: state.auth.isAuth,
     }
 }

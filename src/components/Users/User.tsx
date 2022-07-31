@@ -25,11 +25,13 @@ const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}
                     </div>
                     <div>
                         {user.followed
-                            ? <Button className={styles.followUnfollowButton} type={'default'} shape={'round'} disabled={followingInProgress
-                                .some(id => id === user.id)} onClick={() => {
+                            ? <Button className={styles.followUnfollowButton} type={'default'} shape={'round'}
+                                      disabled={followingInProgress
+                                          .some(id => id === user.id)} onClick={() => {
                                 unfollow(user.id)
                             }}>Unfollow</Button>
-                            : <Button className={styles.followUnfollowButton} type={'default'} shape={'round'} disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                            : <Button className={styles.followUnfollowButton} type={'default'} shape={'round'}
+                                      disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
                                 follow(user.id)
                             }}>Follow</Button>}
                                 </div>
@@ -40,8 +42,8 @@ const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}
                             <div>{user.status}</div>
                         </span>
                             <span>
-                                <div>{'u.location.country'}</div>
-                                <div>{'u.location.city'}</div>
+                                <div>{user.location?.country}</div>
+                                <div>{user.location?.city}</div>
                             </span>
                         </span>
         </div>
