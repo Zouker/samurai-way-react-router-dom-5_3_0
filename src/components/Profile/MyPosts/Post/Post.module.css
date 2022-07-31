@@ -1,5 +1,6 @@
 .item {
-    color: greenyellow;
+    color: #fff;
+    text-shadow: #1890ff 0 0 2px;
 }
 
 .item img {
