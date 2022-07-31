@@ -15,6 +15,7 @@ import {withSuspense} from './hoc/withSuspense';
 import {LoginForm} from './components/Login/Login';
 import {notification} from 'antd';
 import {Footer} from './components/Footer/Footer';
+import {Error404} from './components/common/Error404/Error404';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -34,7 +35,7 @@ export type AppPropsType = MapStatePropsType & MapDispatchToPropsType
 
 class App extends React.Component<AppPropsType> {
     catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
-        alert('Some error occured');
+        // alert('Some error occured');
         console.error(promiseRejectionEvent)
     }
 
@@ -78,7 +79,7 @@ class App extends React.Component<AppPropsType> {
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
                     <Route path="/login" render={withSuspense(LoginForm)}/>
-                    <Route path={'*'} render={() => <div>404 NOT FOUND </div>}/>
+                    <Route path={'*'} render={() => <div><Error404/></div>}/>
                 </Switch>
                 <Footer/>
             </div>
