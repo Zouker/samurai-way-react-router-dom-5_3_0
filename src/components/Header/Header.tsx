@@ -16,7 +16,7 @@ type HeaderPropsType = {
 
 const Header: React.FC<HeaderPropsType> = (props) => {
     const userId = useAppSelector(state => state.auth.userId)
-    const photo = useAppSelector(state => state.profilePage.profile?.photos?.small)
+    const photo = useAppSelector(state => state.profilePage.profile.photos?.small)
     const userProfile = useAppSelector(state => state.profilePage)
     const dispatch = useAppDispatch()
 
